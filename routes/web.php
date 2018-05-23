@@ -28,6 +28,7 @@ Route::group(['prefix' => '/'], function () {
     Route::get('portal', 'PublicController@portal')->name('portal');
     Route::get('order', 'PublicController@order')->name('order');
     Route::post('save', 'PublicController@feedback')->name('send.feedback');
+    Route::post('order/save', 'PublicController@ordersave')->name('order.save');
 
 });
 
@@ -56,6 +57,12 @@ Route::group(['prefix' => 'admin'], function () {
 
     Route::post('/hide', 'ManagerController@hide')->name('hide');
 
+    Route::get('/driver', 'ManagerController@driver')->name('driver');
 
+    Route::post('/driver/add', 'ManagerController@adddriver')->name('add.driver');
+
+    Route::get('/order', 'ManagerController@order')->name('admin.order');
+
+    Route::post('/order/hide', 'ManagerController@active')->name('active.order');
 
 });

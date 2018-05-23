@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Blog;
+use App\Driver;
 use App\Feedback;
+use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,7 +18,7 @@ class ManagerController extends Controller
         $blog = Blog::all()->count();
         $feedback = Feedback::all()->where('created_at', '>=', today())->count();
 
-        return view('admin.dashboard',compact('feedback','blog'));
+        return view('admin.dashboard', compact('feedback', 'blog'));
     }
 
     public function user()
@@ -32,12 +34,13 @@ class ManagerController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
-
+            'role' => 'required',
         ]);
 
         User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'role' => $request->role,
             'password' => bcrypt($request->pasadminsword)
         ]);
 
@@ -150,12 +153,79 @@ class ManagerController extends Controller
 
         $news = Blog::find($request->id);
         $news->update([
-            'judul' =>$request->judul,
-            'konten' =>$request->konten,
-            'subjudul' =>$request->subjudul,
+            'judul' => $request->judul,
+            'konten' => $request->konten,
+            'subjudul' => $request->subjudul,
 
         ]);
 
         return back()->with('message', 'Berhasil Memperbarui Berita ');
     }
+
+    public function driver()
+    {
+        $pengguna = Driver::all();
+
+        return view('admin.driver', compact('pengguna'));
+    }
+
+    public function adddriver(Request $request)
+    {
+        $request->validate([
+            'nama' => 'required',
+            'alamat' => 'required',
+            'role' => 'required',
+            'tgl_lahir' => 'required',
+            'dir' => 'required',
+            'kendaraan' => 'required',
+            'nopol' => 'required',
+            'no_telp' => 'required',
+        ]);
+
+        if ($request->hasFile('dir')) {
+
+            $fillnames2 = $request->dir->getClientOriginalName() . '' . str_random(4);
+            $filename = 'upload/photo/'
+                . str_slug($fillnames2, '-') . '.' . $request->dir->getClientOriginalExtension();
+            $request->dir->storeAs('public', $filename);
+            $berkas = new Driver();
+            $berkas->dir = $filename;
+            $berkas->nama = $request->nama;
+            $berkas->alamat = $request->alamat;
+            $berkas->tgl_lahir = $request->tgl_lahir;
+            $berkas->kendaraan = $request->kendaraan;
+            $berkas->nopol = $request->nopol;
+            $berkas->no_telp = $request->no_telp;
+            $berkas->save();
+            $dir = $fillnames2;
+        }
+
+        return back()->with([
+            'success' => 'Berhasil Menambah Driver!'
+        ]);
+
+    }
+
+    public function order()
+    {
+        $onprogress = Order::all()->where('is_nyampek', false);
+        $finish = Order::all()->where('is_nyampek', true);
+        //$sum = Order::all()->sum('harga')->where('is_nyampek', true);;
+        return view('admin.order', compact('onprogress', 'finish'));
+    }
+
+    public function active(Request $request)
+    {
+        $request->validate([
+            'id' => 'required',
+            'is_nyampek' => 'required',
+        ]);
+        $order = Order::find($request->id);
+        $order->update([
+            'is_nyampek' => $request->is_nyampek,
+        ]);
+
+        return back()->with('message', 'Barang Telah Terkirim');
+    }
+
 }

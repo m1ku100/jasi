@@ -59,6 +59,40 @@
 
     <style>
 
+        #right-panel {
+            font-family: 'Roboto','sans-serif';
+            line-height: 30px;
+            padding-left: 10px;
+        }
+
+        #right-panel select, #right-panel input {
+            font-size: 15px;
+        }
+
+        #right-panel select {
+            width: 100%;
+        }
+
+        #right-panel i {
+            font-size: 12px;
+        }
+
+        #right-panel {
+            margin: 20px;
+            border-width: 2px;
+            width: 20%;
+            height: 600px;
+            float: left;
+            text-align: left;
+            padding-top: 0;
+        }
+        #directions-panel {
+            margin-top: 10px;
+            background-color: #FFFFFF;
+            padding: 10px;
+            overflow: scroll;
+            height: 350px;
+        }
 
         .map {
             width: 1920px;
@@ -164,15 +198,113 @@
     </style>
     <script>
         var map;
+        //
+        // function initMap() {
+        //     var iposition = {lat: -7.2770975, lng: 112.7174085},
+        //     map = new google.maps.Map(document.getElementById('map'), {
+        //         center: iposition,
+        //         zoom: 13
+        //     });
+        //
+        //
+        //
+        //     marker = new google.maps.Marker({
+        //         map: map,
+        //         draggable: true,
+        //         animation: google.maps.Animation.DROP,
+        //         position: {lat:-7.2770975, lng: 112.7}
+        //     });
+        //     marker.addListener('click', toggleBounce);
+        // }
+        //
+        // function toggleBounce() {
+        //     if (marker.getAnimation() !== null) {
+        //         marker.setAnimation(null);
+        //     } else {
+        //         marker.setAnimation(google.maps.Animation.BOUNCE);
+        //     }
+        // }
 
         function initMap() {
-            map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: -34.397, lng: 150.644},
-                zoom: 8
+            var directionsService = new google.maps.DirectionsService;
+            var directionsDisplay = new google.maps.DirectionsRenderer;
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 12,
+                center: {lat: -7.2770975, lng: 112.7174085}
+            });
+            directionsDisplay.setMap(map);
+
+            document.getElementById('submit').addEventListener('click', function() {
+                calculateAndDisplayRoute(directionsService, directionsDisplay);
             });
         }
+
+        function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+            var waypts = [];
+            var checkboxArray = document.getElementById('waypoints');
+            for (var i = 0; i < checkboxArray.length; i++) {
+                if (checkboxArray.options[i].selected) {
+                    waypts.push({
+                        location: checkboxArray[i].value,
+                        stopover: true
+                    });
+                }
+            }
+
+            directionsService.route({
+                origin: document.getElementById('start').value,
+                destination: document.getElementById('end').value,
+                waypoints: waypts,
+                optimizeWaypoints: true,
+                travelMode: 'DRIVING'
+            }, function(response, status) {
+                if (status === 'OK') {
+                    directionsDisplay.setDirections(response);
+                    var route = response.routes[0];
+                    var summaryPanel = document.getElementById('directions-panel');
+                    summaryPanel.innerHTML = '';
+                    // For each route, display summary information.
+                    for (var i = 0; i < route.legs.length; i++) {
+                        var routeSegment = i + 1;
+                        summaryPanel.innerHTML += '<b>Rute Perjalanan: ' + routeSegment +
+                            '</b><br>';
+
+                        summaryPanel.innerHTML += '';
+                        summaryPanel.innerHTML +='<input type="hidden" class="form-control" name="pengambilan" value="'+route.legs[i].start_address+'" ></br> Pegambilan dari : ' + route.legs[i].start_address + ' </br> ';
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="tujuan" value="'+route.legs[i].end_address+'" ></br> Tujuan Pengiriman : '+route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="user_id" value="@guest @else{{ Auth::user()->id }}@endguest" >';
+                        var km = route.legs[i].distance.text;
+
+
+                        if(km.length<=7)
+                        {
+                            var jarak = km.substring(0,4);
+                        }
+                        else if(km.length>=7)
+                        {
+                            var jarak = km.substring(0,5);
+                        }
+
+
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="is_nyampek" value="0">';
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="jarak" value="'+km+'" ><h4>Jarak Yang Ditempuh : '+ km +'</h4>'  + '<br>';
+
+                        summaryPanel.innerHTML += '<input type="hidden"  class="form-control" name="harga" value="'+jarak*3500+'" ><h4>Biaya : Rp. '+ jarak*3500 +'</h4>'  + '<br>';
+
+                        summaryPanel.innerHTML += '<textarea name="catatan" class="form-control" placeholder="Tambahkan Catatan untuk mempermudah Kerja Kurir kami"></textarea>';
+
+                        summaryPanel.innerHTML += '';
+
+                    }
+                } else {
+                    window.alert('Destination or Your Current Position is  ' + status);
+                }
+            });
+        }
+
+
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC8qGuYBYoq85ggnSlZd7efEvT7sV0Rvlw&callback=initMap"
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD0Uiuh6Q2hwWC3at9TbQqe4ZL6XWmp6bw&callback=initMap"
             async defer></script>
 
 </head>
@@ -212,7 +344,7 @@
                                     href="{{route('contact')}}">Contact</a></li>
 
                         @guest
-
+                            <li><a href="{{ route('login') }}">Login</a></li>
                         @else
                             <li class="has-dropdown">
 

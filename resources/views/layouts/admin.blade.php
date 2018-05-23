@@ -53,6 +53,13 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
+                <li  @if (Route::currentRouteName() == 'admin.order' ) class="active" @endif>
+                    <a href="{{route('admin.order')}}">
+                        <i class="material-icons">dns
+                        </i>
+                        <p>Order JASI</p>
+                    </a>
+                </li>
                 <li @if (Route::currentRouteName() == 'user') class="active" @endif>
                     <a href="{{route('user')}}">
                         <i class="material-icons">supervisor_account
@@ -66,11 +73,11 @@
                         <p>Manajemen Blog</p>
                     </a>
                 </li>
-                <li >
-                    <a href="">
+                <li  @if (Route::currentRouteName() == 'driver' ) class="active" @endif>
+                    <a href="{{route('driver')}}">
                         <i class="material-icons">dns
                         </i>
-                        <p>Manajemen Menu</p>
+                        <p>Manajemen Kurir</p>
                     </a>
                 </li>
                 <li >
