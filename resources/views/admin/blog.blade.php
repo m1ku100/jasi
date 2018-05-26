@@ -7,11 +7,16 @@
                 <div class="col-lg-8 col-md-7">
 
                     <a href="{{route('blog.form')}}">
-                    <button type="button" class="btn btn-info pull-left" >
-                        <i class="material-icons">playlist_add
-                        </i> Tambah Data Kategori
-                    </button>
-                    </a>
+                        <button type="button" class="btn btn-info pull-left">
+                            <i class="material-icons">playlist_add
+                            </i> Post Berita Baru
+                        </button>
+                        <a href="{{route('blog.general')}}" target="_blank">
+                            <button type="button" class="btn btn-success pull-left">
+                                <i class="material-icons">arrow_right_alt
+                                </i> Lihat Halaman Utama
+                            </button>
+                        </a>
                 </div>
             </div>
 

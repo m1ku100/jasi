@@ -9,6 +9,7 @@ use App\Order;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class ManagerController extends Controller
@@ -23,7 +24,7 @@ class ManagerController extends Controller
 
     public function user()
     {
-        $pengguna = User::all();
+        $pengguna = User::all()->where('role','=','admin');
 
         return view('admin.user', compact('pengguna'));
     }
@@ -208,10 +209,12 @@ class ManagerController extends Controller
 
     public function order()
     {
-        $onprogress = Order::all()->where('is_nyampek', false);
-        $finish = Order::all()->where('is_nyampek', true);
-        //$sum = Order::all()->sum('harga')->where('is_nyampek', true);;
-        return view('admin.order', compact('onprogress', 'finish'));
+        $onprogress = Order::all()->where('is_nyampek', false)->where('created_at', '>=', today());
+        $finish = Order::all()->where('is_nyampek', true)->where('created_at', '>=', today());
+        $finished = Order::all()->where('is_nyampek', true)->sortByDesc("updated_at");
+        $order= Order::all()->where('is_nyampek', true);
+        $provit = DB::table('orders')->where('is_nyampek', true)->sum('harga');
+        return view('admin.order', compact('onprogress', 'finish','provit','order','finished'));
     }
 
     public function active(Request $request)
