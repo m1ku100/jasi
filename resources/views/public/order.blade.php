@@ -7,7 +7,7 @@
                 <div class="col-md-12 col-md-offset-0 text-center">
                     <div class="display-t">
                         <div class="display-tc animate-box" data-animate-effect="fadeInUp">
-                            <h1 class="mb30">Our Blog</h1>
+                            <h1 class="mb30">Our Service</h1>
                         </div>
                     </div>
                 </div>

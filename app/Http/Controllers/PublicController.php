@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Blog;
 use App\Feedback;
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class PublicController extends Controller
 {
@@ -16,7 +19,8 @@ class PublicController extends Controller
 
     public function index()
     {
-        return view('landing');
+        $blog = Blog::take(3)->get();
+        return view('landing', compact('blog'));
     }
 
 
@@ -98,8 +102,56 @@ class PublicController extends Controller
         ]);
 
         return back()->with([
-            'message' => 'Terima Kasih Atas Kritik Dan saran  yang anda Kirimkan '
+            'message' => 'Silahkan Tunggu dan Pantau Perjalan ASI Anda'
         ]);
+    }
+
+    public function profile()
+    {
+        return view('public.include.profile');
+    }
+
+    public function saveprofile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::find($request->id);
+
+        $user->update([
+            'name' => $request->name,
+            'email' => $request->email
+        ]);
+
+        return back()->with([
+            'message' => 'Berhasil Memperbarui Profile !'
+        ]);
+    }
+
+    public function savepass(Request $request)
+    {
+        if (!Hash::check($request->passlama, Auth::user()->password)) {
+            return back()->with([
+                'error' => 'Kata sandi lama anda salah !'
+            ]);
+        } else {
+            if ($request->passbaru !== $request->pass_confirm) {
+                return back()->with([
+                    'error' => 'Kata sandi yang anda masukkan tidak sama !'
+                ]);
+            } else {
+
+                Auth::user()->update([
+                    'password' => bcrypt($request->passbaru)
+                ]);
+            }
+
+            return back()->with([
+                'message' => 'Berhasil Memperbarui Profile !'
+            ]);
+        }
     }
 
 }

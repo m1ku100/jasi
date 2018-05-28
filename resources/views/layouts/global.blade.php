@@ -60,7 +60,7 @@
     <style>
 
         #right-panel {
-            font-family: 'Roboto','sans-serif';
+            font-family: 'Roboto', 'sans-serif';
             line-height: 30px;
             padding-left: 10px;
         }
@@ -86,6 +86,7 @@
             text-align: left;
             padding-top: 0;
         }
+
         #directions-panel {
             margin-top: 10px;
             background-color: #FFFFFF;
@@ -234,7 +235,7 @@
             });
             directionsDisplay.setMap(map);
 
-            document.getElementById('submit').addEventListener('click', function() {
+            document.getElementById('submit').addEventListener('click', function () {
                 calculateAndDisplayRoute(directionsService, directionsDisplay);
             });
         }
@@ -257,7 +258,7 @@
                 waypoints: waypts,
                 optimizeWaypoints: true,
                 travelMode: 'DRIVING'
-            }, function(response, status) {
+            }, function (response, status) {
                 if (status === 'OK') {
                     directionsDisplay.setDirections(response);
                     var route = response.routes[0];
@@ -270,26 +271,24 @@
                             '</b><br>';
 
                         summaryPanel.innerHTML += '';
-                        summaryPanel.innerHTML +='<input type="hidden" class="form-control" name="pengambilan" value="'+route.legs[i].start_address+'" ></br> Pegambilan dari : ' + route.legs[i].start_address + ' </br> ';
-                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="tujuan" value="'+route.legs[i].end_address+'" ></br> Tujuan Pengiriman : '+route.legs[i].end_address + '<br>';
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="pengambilan" value="' + route.legs[i].start_address + '" ></br> Pegambilan dari : ' + route.legs[i].start_address + ' </br> ';
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="tujuan" value="' + route.legs[i].end_address + '" ></br> Tujuan Pengiriman : ' + route.legs[i].end_address + '<br>';
                         summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="user_id" value="@guest @else{{ Auth::user()->id }}@endguest" >';
                         var km = route.legs[i].distance.text;
 
 
-                        if(km.length<=7)
-                        {
-                            var jarak = km.substring(0,4);
+                        if (km.length <= 7) {
+                            var jarak = km.substring(0, 4);
                         }
-                        else if(km.length>=7)
-                        {
-                            var jarak = km.substring(0,5);
+                        else if (km.length >= 7) {
+                            var jarak = km.substring(0, 5);
                         }
 
 
                         summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="is_nyampek" value="0">';
-                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="jarak" value="'+km+'" ><h4>Jarak Yang Ditempuh : '+ km +'</h4>'  + '<br>';
+                        summaryPanel.innerHTML += '<input type="hidden" class="form-control" name="jarak" value="' + km + '" ><h4>Jarak Yang Ditempuh : ' + km + '</h4>' + '<br>';
 
-                        summaryPanel.innerHTML += '<input type="hidden"  class="form-control" name="harga" value="'+jarak*3500+'" ><h4>Biaya : Rp. '+ jarak*3500 +'</h4>'  + '<br>';
+                        summaryPanel.innerHTML += '<input type="hidden"  class="form-control" name="harga" value="' + jarak * 3500 + '" ><h4>Biaya : Rp. ' + jarak * 3500 + '</h4>' + '<br>';
 
                         summaryPanel.innerHTML += '<textarea name="catatan" class="form-control" placeholder="Tambahkan Catatan untuk mempermudah Kerja Kurir kami"></textarea>';
 
@@ -337,7 +336,8 @@
                         <li @if (Route::currentRouteName() == 'about') class="active" @endif><a
                                     href="{{route('about')}}">About</a></li>
 
-                        <li @if (Route::currentRouteName() == 'blog.general') class="active" @endif><a href="{{route('blog.general')}}">Blog</a>
+                        <li @if (Route::currentRouteName() == 'blog.general') class="active" @endif><a
+                                    href="{{route('blog.general')}}">Blog</a>
                         </li>
 
                         <li @if (Route::currentRouteName() == 'contact') class="active" @endif><a
@@ -359,6 +359,9 @@
                                         </li>
                                     @endif
                                     <li>
+                                        <a href="{{route('profile')}}" >Edit Profile</a>
+                                    </li>
+                                    <li>
                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -373,7 +376,6 @@
                                 </ul>
                             </li>
                         @endguest
-
                     </ul>
                 </div>
             </div>

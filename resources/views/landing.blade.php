@@ -30,20 +30,18 @@
                     <div class="fh5co-heading">
                         <span>We're expert</span>
                         <h2>What We Do</h2>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <p>JASI Will Deliver the Package Safely, Quickly And With the Best Quality We Have.</p>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-4 ">
+                <div class="col-md-4 col-sm-4 " >
                     <div class="feature-center animate-box" data-animate-effect="fadeInUp">
-						<span class="icon">w
-							<i class="icon-eye"></i>
+						<span class="icon">
+							<i class="icon-news"></i>
 						</span>
-                        <h3>Retina Ready</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <h3>News About You & your Baby</h3>
+                        <p>Find Information About Mom and Baby in JASI Website.</p>
                         <p><a href="#">Learn more</a></p>
                     </div>
                 </div>
@@ -53,8 +51,7 @@
 							<i class="icon-command"></i>
 						</span>
                         <h3>Fully Responsive</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
+                        <p>You can access JASI Website Via Mobile Device. And Stay Tune On Play Store for Mobile Version.</p>
                         <p><a href="#">Learn more</a></p>
                     </div>
                 </div>
@@ -70,79 +67,11 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 col-sm-4 ">
-                    <div class="feature-center animate-box" data-animate-effect="fadeInUp">
-						<span class="icon">
-							<i class="icon-eye"></i>
-						</span>
-                        <h3>Retina Ready</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
-                        <p><a href="#">Learn more</a></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 ">
-                    <div class="feature-center animate-box" data-animate-effect="fadeInUp">
-						<span class="icon">
-							<i class="icon-command"></i>
-						</span>
-                        <h3>Fully Responsive</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
-                        <p><a href="#">Learn more</a></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 ">
-                    <div class="feature-center animate-box" data-animate-effect="fadeInUp">
-						<span class="icon">
-							<i class="icon-power"></i>
-						</span>
-                        <h3>Web Starter</h3>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts.</p>
-                        <p><a href="#">Learn more</a></p>
-                    </div>
-                </div>
 
             </div>
         </div>
     </div>
 
-    <div id="fh5co-project">
-        <div class="container">
-            <div class="row row-pb-md">
-                <div class="col-md-8 col-md-offset-2 text-center fh5co-heading  animate-box">
-                    <span>Want Some Cool Stuff</span>
-                    <h2>Recent Project</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-                        Odit ab aliquam dolor eius.</p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-                    <a href="#"><img src="images/work-1.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"
-                                     class="img-responsive">
-                        <h3>Clipboard Office</h3>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-                    <a href="#"><img src="images/work-2.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"
-                                     class="img-responsive">
-                        <h3>Smart Layers</h3>
-                    </a>
-                </div>
-                <div class="col-md-4 col-sm-6 fh5co-project animate-box" data-animate-effect="fadeIn">
-                    <a href="#"><img src="images/work-3.jpg" alt="Free HTML5 Website Template by FreeHTML5.co"
-                                     class="img-responsive">
-                        <h3>Notepad Mockup</h3>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-
-    </div>
 
     <div id="fh5co-testimonial" class="fh5co-bg-section">
         <div class="container">
@@ -222,8 +151,8 @@
 							<span class="icon">
 								<i class="ti-face-smile"></i>
 							</span>
-                        <span class="counter"><span class="js-counter" data-from="0" data-to="2" data-speed="1500"
-                                                    data-refresh-interval="50">1</span>K+</span>
+                        <span class="counter"><span class="js-counter" data-from="0" data-to="{{App\User::all()->count()}}" data-speed="1500"
+                                                    data-refresh-interval="50">1</span></span>
                         <span class="counter-label">Happy Clients</span>
                     </div>
                 </div>
@@ -232,9 +161,9 @@
 							<span class="icon">
 								<i class="ti-briefcase"></i>
 							</span>
-                        <span class="counter"><span class=" js-counter" data-from="0" data-to="6" data-speed="1500"
-                                                    data-refresh-interval="50">1</span>K+</span>
-                        <span class="counter-label">Projects Done</span>
+                        <span class="counter"><span class=" js-counter" data-from="0" data-to="60" data-speed="1500"
+                                                    data-refresh-interval="50">1</span></span>
+                        <span class="counter-label">Courier</span>
                     </div>
                 </div>
                 <div class="col-md-3 col-sm-6 animate-box" data-animate-effect="fadeInLeft">
@@ -259,44 +188,21 @@
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
                     <span>Thoughts &amp; Ideas</span>
                     <h2>Our Blog</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-                        Odit ab aliquam dolor eius.</p>
+                    <p>Temukan Informasi untuk Ibu dan sang buah hati</p>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="fh5co-post">
-                        <span class="fh5co-date">Sep. 12th</span>
-                        <h3><a href="#">Web Design for the Future</a></h3>
-                        <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta
-                            adipisci architecto culpa amet.</p>
-                        <p class="author"><img src="images/person1.jpg"
-                                               alt="Free HTML5 Bootstrap Template by FreeHTML5.co"> <cite> Mike
-                                Adam</cite></p>
+                @foreach($blog as $post)
+                    <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
+                        <div class="fh5co-post">
+                            <span class="fh5co-date">{{$post->updated_at}}</span>
+                            <h3><a href="#">{{$post->judul}}</a></h3>
+                            <p>{!! $post->konten !!}</p>
+                            <p class="author"><img src="{{asset('shape/images/person1.jpg')}}"
+                                                   alt="Free HTML5 Bootstrap Template by FreeHTML5.co"> <cite> {{$post->uploder}}</cite></p>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="fh5co-post">
-                        <span class="fh5co-date">Sep. 23rd</span>
-                        <h3><a href="#">Web Design for the Future</a></h3>
-                        <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta
-                            adipisci architecto culpa amet.</p>
-                        <p class="author"><img src="images/person1.jpg"
-                                               alt="Free HTML5 Bootstrap Template by FreeHTML5.co"> <cite> Mike
-                                Adam</cite></p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-4 animate-box" data-animate-effect="fadeInUp">
-                    <div class="fh5co-post">
-                        <span class="fh5co-date">Sep. 24th</span>
-                        <h3><a href="#">Web Design for the Future</a></h3>
-                        <p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit. Eos cumque dicta
-                            adipisci architecto culpa amet.</p>
-                        <p class="author"><img src="images/person1.jpg"
-                                               alt="Free HTML5 Bootstrap Template by FreeHTML5.co"> <cite> Mike
-                                Adam</cite></p>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -305,12 +211,10 @@
         <div class="container">
             <div class="row animate-box">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-                    <span>Let's work together</span>
-                    <h2>Start Your Project</h2>
-                    <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident.
-                        Odit ab aliquam dolor eius.</p>
-                    <p>
-                        <button type="submit" class="btn btn-default">Get In Touch</button>
+                    <span>Let's Start Your Experience with JASI</span>
+                    <h2>Start Your Journey with Us</h2>
+                    <p><a href="{{route('register')}}">
+                        <button type="submit" class="btn btn-default">Take your Experience</button></a>
                     </p>
                 </div>
             </div>

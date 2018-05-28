@@ -27,8 +27,12 @@ Route::group(['prefix' => '/'], function () {
     Route::get('contact', 'PublicController@contact')->name('contact');
     Route::get('portal', 'PublicController@portal')->name('portal');
     Route::get('order', 'PublicController@order')->name('order');
+    Route::get('profile', 'PublicController@profile')->name('profile');
     Route::post('save', 'PublicController@feedback')->name('send.feedback');
     Route::post('order/save', 'PublicController@ordersave')->name('order.save');
+    Route::post('profile/save', 'PublicController@saveprofile')->name('save.profile');
+    Route::post('profile/pass', 'PublicController@savepass')->name('save.pass');
+
 
 });
 
